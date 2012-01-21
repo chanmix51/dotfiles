@@ -2,6 +2,8 @@
 
 for entry in *;
 do
-  ln -s $entry ~/.${entry}
+  if [ "$entry" != "${0##*/}" ];
+  then
+    ln -sf $PWD/${entry} ~/.${entry}
+  fi
 done
-
