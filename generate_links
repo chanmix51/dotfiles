@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for entry in *;
+do
+  ln -s $entry ~/.${entry}
+done
+
