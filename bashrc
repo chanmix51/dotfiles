@@ -78,9 +78,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -101,15 +101,13 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
-export PS1='\[\e[32;1m\]\u\[\e[33;1m\]@\h\[\e[m\]:\w\$ '
-export EDITOR='vim'
-export LXC='/var/lib/lxc'
-export PERSO_DEV=$LXC/perso/rootfs/var/www/dev
+export PS1='\[\e[33;1m\]\u\[\e[m\]@\[\e[32;1m\]\h\[\e[m\]:\w\$ '
+export EDITOR=$(which vim)
+export LXC_PERSO=/var/lib/lxc/perso/rootfs/var/www/dev
 
 alias ll='ls -lh'
 alias la='ls -lha'
-#alias s='screen'
+alias psql='/var/lib/lxc/perso/rootfs/usr/bin/psql'
 
 function splitw() {
   tmux split-window "$*";
@@ -118,3 +116,4 @@ function splitw() {
 function neww() {
   tmux new-window "$*";
 }
+
