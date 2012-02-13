@@ -104,6 +104,7 @@ fi
 export PS1='\[\e[33;1m\]\u\[\e[m\]@\[\e[32;1m\]\h\[\e[m\]:\w\$ '
 export EDITOR=$(which vim)
 export LXC_PERSO=/var/lib/lxc/perso/rootfs/var/www/dev
+export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
 
 alias ll='ls -lh'
 alias la='ls -lha'
