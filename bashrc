@@ -101,10 +101,10 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-export PS1='\[\e[33;1m\]\u\[\e[m\]@\[\e[32;1m\]\h\[\e[m\]:\w\$ '
 export EDITOR=$(which vim)
 export LXC_PERSO=/var/lib/lxc/perso/rootfs/var/www/dev
 export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
+export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
 
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -118,3 +118,6 @@ function neww() {
   tmux new-window "$*";
 }
 
+function getGitBranch() {
+  git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
