@@ -104,10 +104,14 @@ fi
 export EDITOR=$(which vim)
 export LXC_PERSO=/var/lib/lxc/perso/rootfs/var/www/dev
 export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
+export LXC_JAVA=/var/lib/lxc/java/rootfs/home/greg
 export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
 
-alias ll='ls -lh'
-alias la='ls -lha'
+alias ll='ls -sh1'
+alias la='ls -sha1'
+alias lh='ls -lh'
+alias lha='ls -lha'
+
 alias psql='/var/lib/lxc/perso/rootfs/usr/bin/psql'
 
 function splitw() {
