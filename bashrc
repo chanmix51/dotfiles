@@ -101,10 +101,19 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+export TERM=xterm-256color
 export EDITOR=$(which vim)
 export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
 export LXC_JAVA=/var/lib/lxc/java/rootfs/home/greg
-export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
+
+case $(hostname) in
+    "stinger")
+        export PS1="[\[\e[38;5;45m\]\$(date +%H:%M)\[\e[m\]]:\w\$ "
+        ;;
+    "*")
+        export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
+esac
+
 
 alias ll='ls -sh1'
 alias la='ls -sha1'
