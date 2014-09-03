@@ -132,7 +132,6 @@ function getGitBranch() {
   git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-[ -f ~/.dotfiles/.bashrc.$(hostname) ] && . ~/.dotfiles/.bashrc.$(hostname) 
 [ -f ~/.bashrc.local ] && . ~/.bashrc.local 
 
 
