@@ -1,3 +1,0 @@
-export LXC_PERSO=/var/lib/lxc/perso/rootfs/var/www/dev
-export LXC_JAVA=/var/lib/lxc/java/rootfs/var/www/dev
-export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
