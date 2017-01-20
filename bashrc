@@ -13,7 +13,7 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+HISTSIZE=10000
 HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
@@ -103,35 +103,24 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 export TERM=xterm-256color
 export EDITOR=$(which vim)
-export LXC_KNP=/var/lib/lxc/knp/rootfs/var/www/dev
-export LXC_JAVA=/var/lib/lxc/java/rootfs/home/greg
-
-case $(hostname) in
-    "stinger")
-        export PS1="[\[\e[38;5;45m\]\$(date +%H:%M)\[\e[m\]]:\w\$ "
-        ;;
-    "*")
-        export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
-esac
+export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
 
 
-alias ll='ls -sh1'
-alias la='ls -sha1'
-alias lh='ls -lh'
-alias lha='ls -lha'
+alias ll='ls -lh1'
+alias la='ls -lha1'
 
-function splitw() {
+splitw() {
   tmux split-window "$*";
 }
 
-function neww() {
+neww() {
   tmux new-window "$*";
 }
 
-function getGitBranch() {
+getGitBranch() {
   git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 [ -f ~/.bashrc.local ] && . ~/.bashrc.local 
 
-
+alias phpx='php -dzend_extension=xdebug.so'

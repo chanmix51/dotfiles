@@ -7,5 +7,8 @@ show server_version
 \pset pager off
 \pset format wrapped
 \pset linestyle unicode
-\pset null ¤
+\pset null ø
 \pset border 2
+
+\set csvon '\\f '','' \\t off \\timing off \\pset format unaligned \\pset border 0 \\pset footer off'
+\set csvoff '\\f ''|'' \\t off \\timing on \\pset format aligned \\pset border 2 \\pset footer on'
