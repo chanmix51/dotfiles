@@ -1,9 +1,15 @@
 #!/bin/bash
 
+target=${1:-$HOME}
+
+[ -d "${target}" -a -w "${target}" ] || exit 1;
+
 for entry in *;
 do
   if [ "$entry" != "${0##*/}" ];
   then
-    ln -sf $PWD/${entry} ~/.${entry}
+    [ -L ${target}/.${entry} ] && rm ${target}/.${entry};
+    [ -f ${target}/.${entry} -o -d ${target}/.${entry} ] && mv ${target}/.${entry}.dotfile;
+    ln -sf $PWD/${entry} ${target}/.${entry}
   fi
 done
