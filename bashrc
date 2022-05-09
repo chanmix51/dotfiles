@@ -103,7 +103,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 export TERM=xterm-256color
 export EDITOR=$(which vim)
-export PS1='\[\e[1m\]\W\[\e[m\]:\[\e[32;1m\]$(getGitBranch)\[\e[m\]\$ '
+green=$(tput setaf 2)
+bold=$(tput bold)
+reset=$(tput sgr0)
+export PS1='\[${bold}\]\W\[${reset}\]\[${green}\]$(getGitBranch)\[${reset}\](\j)\$ '
 
 
 alias ll='ls -lh1'
@@ -118,9 +121,18 @@ neww() {
 }
 
 getGitBranch() {
-  git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+  local readonly branch=$(git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/');
+  if [[ -n "${branch}" ]];
+  then
+    echo " → ${branch}"
+  fi
 }
 
-[ -f ~/.bashrc.local ] && . ~/.bashrc.local 
+[ -f ~/.bashrc.local ] && . ~/.bashrc.local
 
 alias phpx='php -dzend_extension=xdebug.so'
+export PATH=$PATH:~/bin;
+
+mkchdir() {
+  mkdir "$@" && cd "$@"
+}
